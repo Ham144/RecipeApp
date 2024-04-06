@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './global.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './components/navbar';
+import GlobalState from './components/Context';
+import Navbar from './components/Navbar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
-      <App />
+      <GlobalState>
+        <Navbar />
+        <App />
+      </GlobalState>
     </BrowserRouter>
   </React.StrictMode>
 );
