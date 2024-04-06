@@ -71,6 +71,8 @@ export default function GlobalState({ children }) {
 				ingredients,
 				setIngredients,
 				addToFavorite,
+				favorites,
+				setFavorites,
 			}}
 		>
 			{children}

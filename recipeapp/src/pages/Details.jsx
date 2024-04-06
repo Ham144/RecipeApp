@@ -85,7 +85,9 @@ export default function Details() {
 					/>
 					<div
 						className={`${
-							checkIsFavorite === true ? "bg-yellow-400 hidden" : ""
+							checkIsFavorite === true && foodMatch?.data?.recipes[index]
+								? "bg-yellow-400 hidden"
+								: ""
 						} absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 `}
 						onClick={() => addToFavorite(foodMatch?.data?.recipes[index])}
 					>
