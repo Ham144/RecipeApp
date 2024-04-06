@@ -19,21 +19,9 @@ export default function Details() {
 		setIngredients,
 		addToFavorite,
 		favorites,
+		fetchingIngredients,
 	} = useContext(GlobalContext);
 	const { index } = useParams();
-
-	const fetchingIngredients = async (getindex) => {
-		try {
-			const response = await fetch(
-				`https://forkify-api.herokuapp.com/api/v2/recipes/${foodMatch?.data?.recipes[getindex].id}`
-			);
-			const data = await response.json();
-			// console.log(data?.data?.recipe, "getindex=", index);
-			setIngredients(data.data);
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	const handleArrow = (getIndex, getPosition) => {
 		if (getPosition === "right") {
@@ -55,22 +43,6 @@ export default function Details() {
 	useEffect(() => {
 		fetchingIngredients(index);
 	}, [index]); //ini untuk pertama kali klik dari home atau dari navbar dan juga sangat berguna untuk mensinkronkan ingredients update
-
-	const checkIsFavorite = () => {
-		const found = favorites.find((e) => {
-			return foodMatch?.data?.recipes[index].id === e.id;
-		});
-		if (found !== -1 && foodMatch.data.recipes[index].id) {
-			console.log("Yest its favorited");
-			return true;
-		} else {
-			return false;
-		}
-	};
-
-	useEffect(() => {
-		checkIsFavorite();
-	}, [favorites.length]);
 
 	return (
 		<div className="flex flex-col  justify-center items-center bg-slate-100  sm:px-16 mx-auto transition-opacity duration-1000 pt-[100px]">

@@ -31,6 +31,19 @@ export default function GlobalState({ children }) {
 		}
 	};
 
+	const fetchingIngredients = async (getindex) => {
+		try {
+			const response = await fetch(
+				`https://forkify-api.herokuapp.com/api/v2/recipes/${foodMatch?.data?.recipes[getindex].id}`
+			);
+			const data = await response.json();
+			console.log(data?.data?.recipe, "getindex=");
+			setIngredients(data.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		fetchingData();
 	}, []);
@@ -42,17 +55,17 @@ export default function GlobalState({ children }) {
 	const addToFavorite = (item) => {
 		const collection = [...favorites];
 		const exist = collection.findIndex((single) => {
-			console.log(single.id, item.id);
+			// console.log(single.id, item.id);
 			return single.id === item.id;
 		});
 
 		if (exist === -1) {
 			setFavorites((prevFavorites) => setFavorites([...prevFavorites, item]));
-			console.log("tertambah");
+			// console.log("tertambah");
 		} else if (exist !== -1) {
 			collection.splice(exist, 1);
 			setFavorites(collection);
-			console.log("terhapus");
+			// console.log("terhapus");
 		}
 		console.log(favorites.length);
 	};
@@ -73,6 +86,7 @@ export default function GlobalState({ children }) {
 				addToFavorite,
 				favorites,
 				setFavorites,
+				fetchingIngredients,
 			}}
 		>
 			{children}
