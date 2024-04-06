@@ -37,7 +37,8 @@ export default function GlobalState({ children }) {
 				`https://forkify-api.herokuapp.com/api/v2/recipes/${foodMatch?.data?.recipes[getindex].id}`
 			);
 			const data = await response.json();
-			console.log(data?.data?.recipe, "getindex=");
+			// console.log(data?.data?.recipe);
+			// console.log(favorites);
 			setIngredients(data.data);
 		} catch (error) {
 			console.log(error);

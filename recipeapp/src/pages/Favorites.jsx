@@ -1,8 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../components/Context";
 
 const Favorites = () => {
 	const { favorites } = useContext(GlobalContext);
+	const [ingredientsFav, setIngredientsFav] = useState([]);
+
+	const fetchingFavoriteIng = async (getid) => {
+		console.log(getid);
+		try {
+			const response = await fetch(
+				`https://forkify-api.herokuapp.com/api/v2/recipes/${getid}`
+			);
+			const data = await response.json();
+			if (!data) return;
+			setIngredientsFav((prev) => setIngredientsFav([...prev, data]));
+			console.log(ingredientsFav);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div className="pt-[100px] flex flex-col items-center justify-center   bg-slate-200 min-h-screen">
@@ -18,8 +34,8 @@ const Favorites = () => {
 						<div className="flex flex-col detail items-start ">
 							<p className="text-3xl font-light text-start">{item.title}</p>
 							<p className="font-bold font-serif">{item.publisher}</p>
-							<p></p>
 						</div>
+						<div>{() => fetchingFavoriteIng(item.id)}</div>
 					</div>
 				))}
 			</div>
