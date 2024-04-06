@@ -39,14 +39,18 @@ export default function GlobalState({ children }) {
 		fetchingData();
 	};
 
+	useEffect(() => {
+		setFavorites(favorites);
+		console.log(favorites);
+	}, [favorites]);
 	const addToFavorite = (item) => {
 		const collection = [...favorites];
 		const exist = collection.findIndex((single) => {
 			return single.id === item.id;
 		});
 		if (exist) return collection.splice(exist, 1);
-		collection.push(item);
-		setFavorites(collection);
+
+		setFavorites([...favorites, item]);
 		console.log(item, favorites);
 	};
 	return (
