@@ -1,23 +1,42 @@
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "./Context";
 
 export default function Navbar() {
 	const { searchParam, setSearchParam, searchData, navigate } =
 		useContext(GlobalContext);
+	const [showSidebar, setshowSidebar] = useState(false);
+
+	const handleShowSideBar = () => {};
 
 	return (
 		<nav className="navbar px-5 fixed z-20 w-screen backdrop-blur-sm  py-[20px] flex justify-between items-center border-b-2">
 			<div className="logo">
 				<img
-					className="hover:rotate-180 duration-1000"
+					className="hover:rotate-180 duration-1000 md:flex hidden"
 					src="https://cdn-icons-png.flaticon.com/128/2276/2276931.png"
 					alt="logo"
 					onClick={() => navigate("/")}
 					width={60}
 					height={60}
 				/>
+				<img
+					className="size-[40%] md:hidden border-x-black active:border-y-black active:border-x-0  border-4 rounded-full "
+					src="https://cdn-icons-png.flaticon.com/128/2276/2276931.png"
+					alt="logo"
+					onClick={() => setshowSidebar(!showSidebar)}
+					width={60}
+					height={60}
+				/>
+
+				<div
+					className={`sidebar ${
+						showSidebar ? "translate-x-[200px]" : ""
+					}  absolute left-[-200px] w-[40%] top-[110px] h-screen bg-slate-400  rounded-md`}
+				>
+					test
+				</div>
 			</div>
 			<div className="flex gap-x-14   Navigation md:visible max-md:hidden xl:translate-x-[300px] duration-500">
 				<Link

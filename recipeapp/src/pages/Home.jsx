@@ -62,8 +62,8 @@ const Home = () => {
 					))
 				)
 			) : (
-				<div className="flex flex-1 w-screen mx-auto items-center justify-center justify-items-center h-screen text-7xl">
-					We cant found it
+				<div className="absolute top-[50%] flex-1  mx-auto items-center justify-center justify-items-center  h-screen ">
+					Nothing to show :(
 				</div>
 			)}
 		</div>
