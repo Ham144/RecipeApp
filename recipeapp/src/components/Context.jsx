@@ -48,11 +48,13 @@ export default function GlobalState({ children }) {
 
 		if (exist === -1) {
 			setFavorites((prevFavorites) => setFavorites([...prevFavorites, item]));
+			console.log("tertambah");
 		} else if (exist !== -1) {
-			setFavorites((prevFavorites) => prevFavorites.splice(exist, 1)); // Remove using previous state
-			console.log("masuk");
+			collection.splice(exist, 1);
+			setFavorites(collection);
+			console.log("terhapus");
 		}
-		console.log(exist);
+		console.log(favorites.length);
 	};
 
 	return (
