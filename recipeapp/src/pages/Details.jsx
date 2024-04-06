@@ -60,11 +60,11 @@ export default function Details() {
 		console.log(item);
 	};
 
-	const checkIsFavorite = (getindex) => {
+	const checkIsFavorite = () => {
 		const found = favorites.find((e) => {
-			return foodMatch?.data?.recipes[getindex].id === e.id;
+			return foodMatch?.data?.recipes[index].id === e.id;
 		});
-		if (found !== -1 && getindex === index) {
+		if (found !== -1) {
 			console.log("Yest its favorited");
 			return true;
 		} else {
@@ -85,13 +85,9 @@ export default function Details() {
 					/>
 					<div
 						className={`${
-							favorites.some(
-								(fav) => fav.id === foodMatch?.data?.recipes[index]?.id
-							)
-								? "bg-yellow-500"
-								: ""
-						} absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 hover:bg-slate-300`}
-						onClick={() => addToFavorite(foodMatch.data.recipes[index])}
+							checkIsFavorite === true ? "bg-yellow-400 hidden" : ""
+						} absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 `}
+						onClick={() => addToFavorite(foodMatch?.data?.recipes[index])}
 					>
 						<FaHeart size={30} />
 					</div>
