@@ -72,11 +72,13 @@ export default function Details() {
 						alt=""
 					/>
 					<div
-						className={`${
-							favorites.map((e) => e.id === foodMatch.data.recipe[index].id)
-								? "bg-yellow-500"
-								: ""
-						} absolute  z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 bg-white hover:bg-slate-300`}
+						className={`${favorites.find((e) => {
+							if (e.id === foodMatch.data.recipes[index].id) {
+								return "bg-yellow-500";
+							} else {
+								return "";
+							}
+						})} absolute  z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 bg-white hover:bg-slate-300`}
 						onClick={() => addToFavorite(foodMatch.data.recipes[index])}
 					>
 						<FaHeart size={30} />
