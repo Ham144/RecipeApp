@@ -39,20 +39,18 @@ export default function GlobalState({ children }) {
 		fetchingData();
 	};
 
-	useEffect(() => {
-		setFavorites(favorites);
-		console.log(favorites);
-	}, [favorites]);
 	const addToFavorite = (item) => {
 		const collection = [...favorites];
-		const exist = collection.findIndex((single) => {
-			return single.id === item.id;
-		});
-		if (exist) return collection.splice(exist, 1);
+		const exist = collection.findIndex((single) => single.id === item.id);
 
-		setFavorites([...favorites, item]);
-		console.log(item, favorites);
+		if (exist) {
+			setFavorites((prevFavorites) => prevFavorites.splice(exist, 1)); // Remove using previous state
+		} else {
+			setFavorites((prevFavorites) => setFavorites([...prevFavorites, item]));
+		}
+		console.log(favorites.length);
 	};
+
 	return (
 		<GlobalContext.Provider
 			value={{

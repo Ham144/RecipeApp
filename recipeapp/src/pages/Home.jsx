@@ -3,15 +3,8 @@ import { GlobalContext } from "../components/Context";
 import { FaHeart, FaStar } from "react-icons/fa";
 
 const Home = () => {
-	const {
-		loading,
-		foodMatch,
-		navigate,
-		setId,
-		addToFavorite,
-		favorite,
-		setfavorite,
-	} = useContext(GlobalContext);
+	const { loading, foodMatch, navigate, setId, addToFavorite } =
+		useContext(GlobalContext);
 
 	const handleDetail = (getindex) => {
 		setId(foodMatch?.data?.recipes[getindex]?.id);

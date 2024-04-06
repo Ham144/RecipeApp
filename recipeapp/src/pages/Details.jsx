@@ -7,11 +7,12 @@ import {
 	FaArrowLeft,
 	FaArrowRight,
 	FaCircle,
+	FaHeart,
 } from "react-icons/fa";
 import { MdDinnerDining } from "react-icons/md";
 
 export default function Details() {
-	const { foodMatch, navigate, ingredients, setIngredients } =
+	const { foodMatch, navigate, ingredients, setIngredients, addToFavorite } =
 		useContext(GlobalContext);
 	const { index } = useParams();
 
@@ -60,6 +61,12 @@ export default function Details() {
 						src={foodMatch?.data?.recipes[index]?.image_url}
 						alt=""
 					/>
+					<div
+						className="absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 bg-white hover:bg-slate-300"
+						onClick={() => addToFavorite(food)}
+					>
+						<FaHeart size={30} />
+					</div>
 					<div className="flex justify-around  pt-4">
 						<div className="flex flex-col gap-y-4 justify-around">
 							<p className="bg-yellow-200 rounded-full px-3 py-1 text-center">
