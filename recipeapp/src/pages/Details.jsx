@@ -56,15 +56,11 @@ export default function Details() {
 		fetchingIngredients(index);
 	}, [index]); //ini untuk pertama kali klik dari home atau dari navbar dan juga sangat berguna untuk mensinkronkan ingredients update
 
-	const TestaddToFavorite = (item) => {
-		console.log(item);
-	};
-
 	const checkIsFavorite = () => {
 		const found = favorites.find((e) => {
 			return foodMatch?.data?.recipes[index].id === e.id;
 		});
-		if (found !== -1) {
+		if (found !== -1 && foodMatch.data.recipes[index].id) {
 			console.log("Yest its favorited");
 			return true;
 		} else {
@@ -72,27 +68,36 @@ export default function Details() {
 		}
 	};
 
+	useEffect(() => {
+		checkIsFavorite();
+	}, [favorites.length]);
+
 	return (
 		<div className="flex flex-col  justify-center items-center bg-slate-100  sm:px-16 mx-auto transition-opacity duration-1000 pt-[100px]">
 			<h1 className="font-light text-4xl text-center ">Food's Detail</h1>
 
 			<div className="sm:flex  justify-center  text-2xl  sm:gap-x-4 border px-4 py-5 space-y-5 bg-white">
 				<div>
-					<img
-						className="lg:h-[600px] sm:h-[100px] rounded-md"
-						src={foodMatch?.data?.recipes[index]?.image_url}
-						alt=""
-					/>
-					<div
-						className={`${
-							checkIsFavorite === true && foodMatch?.data?.recipes[index]
-								? "bg-yellow-400 hidden"
-								: ""
-						} absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 `}
-						onClick={() => addToFavorite(foodMatch?.data?.recipes[index])}
-					>
-						<FaHeart size={30} />
+					<div className="flex  text-center">
+						<img
+							className="lg:h-[600px] sm:h-[100px] rounded-md"
+							src={foodMatch?.data?.recipes[index]?.image_url}
+							alt=""
+						/>
+						<div
+							className={`${
+								favorites.find((fav) => {
+									return fav.id === foodMatch.data.recipes[index].id;
+								})
+									? "bg-yellow-200 text-yellow-500"
+									: "bg-white"
+							} relative  h-full z-10 right-[15%] top-5 shadow-xl   text-yellow-400 border rounded-full p-2 px-2 `}
+							onClick={() => addToFavorite(foodMatch?.data?.recipes[index])}
+						>
+							<FaHeart className="xl:size-[50px] lg:size-[40px] size-[30px]" />
+						</div>
 					</div>
+
 					<div className="flex justify-around  pt-4">
 						<div className="flex flex-col gap-y-4 justify-around">
 							<p className="bg-yellow-200 rounded-full px-3 py-1 text-center">
