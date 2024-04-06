@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../components/Context";
-import { FaStar } from "react-icons/fa";
+import { FaHeart, FaStar } from "react-icons/fa";
 
 const Home = () => {
-	const { loading, foodMatch, navigate, setId, id } = useContext(GlobalContext);
+	const {
+		loading,
+		foodMatch,
+		navigate,
+		setId,
+		addToFavorite,
+		favorite,
+		setfavorite,
+	} = useContext(GlobalContext);
 
 	const handleDetail = (getindex) => {
 		setId(foodMatch?.data?.recipes[getindex]?.id);
@@ -24,7 +32,6 @@ const Home = () => {
 								!food.image_url ? "hidden" : "visible"
 							} drop-shadow-lg rounded-md text-center `}
 							key={food.id}
-							onClick={() => handleDetail(index)}
 						>
 							<div className="absolute flex z-10 text-yellow-400 ">
 								{Array(Math.floor(Math.random() * 5) + 1)
@@ -38,10 +45,17 @@ const Home = () => {
 									))}
 							</div>
 
+							<div
+								className="absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 bg-white hover:bg-slate-300"
+								onClick={() => addToFavorite(food)}
+							>
+								<FaHeart size={30} />
+							</div>
 							<img
 								className="aspect-square object-cover hover:object-contain text-sm text-center transition-opacity rounded-lg drop-shadow-xl"
 								src={food.image_url}
 								alt="api fault"
+								onClick={() => handleDetail(index)}
 							/>
 							<div className="">
 								<p className="text-[18px] font-extralight border border-spacing-1 px-4 py-1 uppercase rounded-sm bg-yellow-300 text-nowrap overflow-hidden hover:text-wrap transition duration-1000">

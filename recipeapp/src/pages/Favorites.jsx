@@ -8,24 +8,6 @@ const Favorites = () => {
 				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
 					hello
 				</div>
-				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
-					hello
-				</div>
-				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
-					hello
-				</div>
-				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
-					hello
-				</div>
-				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
-					hello
-				</div>
-				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
-					hello
-				</div>
-				<div className="px-[30px] border h-[150px] py-2 border-black rounded-md w-full bg-blue-200 drop-shadow-lg">
-					hello
-				</div>
 			</div>
 		</div>
 	);

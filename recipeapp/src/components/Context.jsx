@@ -10,6 +10,7 @@ export default function GlobalState({ children }) {
 	const [id, setId] = useState("");
 	const navigate = useNavigate();
 	const [ingredients, setIngredients] = useState();
+	const [favorites, setFavorites] = useState([]);
 
 	const fetchingData = async () => {
 		try {
@@ -38,6 +39,16 @@ export default function GlobalState({ children }) {
 		fetchingData();
 	};
 
+	const addToFavorite = (item) => {
+		const collection = [...favorites];
+		const exist = collection.findIndex((single) => {
+			return single.id === item.id;
+		});
+		if (exist) return collection.splice(exist, 1);
+		collection.push(item);
+		setFavorites(collection);
+		console.log(item, favorites);
+	};
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -51,6 +62,7 @@ export default function GlobalState({ children }) {
 				setId,
 				ingredients,
 				setIngredients,
+				addToFavorite,
 			}}
 		>
 			{children}

@@ -11,7 +11,7 @@ import {
 import { MdDinnerDining } from "react-icons/md";
 
 export default function Details() {
-	const { foodMatch, navigate, id, setId, ingredients, setIngredients } =
+	const { foodMatch, navigate, ingredients, setIngredients } =
 		useContext(GlobalContext);
 	const { index } = useParams();
 
@@ -21,7 +21,7 @@ export default function Details() {
 				`https://forkify-api.herokuapp.com/api/v2/recipes/${foodMatch?.data?.recipes[getindex].id}`
 			);
 			const data = await response.json();
-			console.log(data?.data?.recipe, "getindex=", index);
+			// console.log(data?.data?.recipe, "getindex=", index);
 			setIngredients(data.data);
 		} catch (error) {
 			console.log(error);
