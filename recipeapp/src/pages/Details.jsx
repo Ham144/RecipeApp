@@ -50,6 +50,10 @@ export default function Details() {
 		fetchingIngredients(index);
 	}, [index]); //ini untuk pertama kali klik dari home atau dari navbar dan juga sangat berguna untuk mensinkronkan ingredients update
 
+	const TestaddToFavorite = (item) => {
+		console.log(item);
+	};
+
 	return (
 		<div className="flex flex-col  justify-center items-center bg-slate-100  sm:px-16 mx-auto transition-opacity duration-1000 pt-[100px]">
 			<h1 className="font-light text-4xl text-center ">Food's Detail</h1>
@@ -63,7 +67,7 @@ export default function Details() {
 					/>
 					<div
 						className="absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 bg-white hover:bg-slate-300"
-						onClick={() => addToFavorite(food)}
+						onClick={() => addToFavorite(foodMatch.data.recipes[index])}
 					>
 						<FaHeart size={30} />
 					</div>

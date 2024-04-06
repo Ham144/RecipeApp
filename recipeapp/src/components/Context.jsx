@@ -41,14 +41,18 @@ export default function GlobalState({ children }) {
 
 	const addToFavorite = (item) => {
 		const collection = [...favorites];
-		const exist = collection.findIndex((single) => single.id === item.id);
+		const exist = collection.findIndex((single) => {
+			console.log(single.id, item.id);
+			return single.id === item.id;
+		});
 
-		if (exist) {
-			setFavorites((prevFavorites) => prevFavorites.splice(exist, 1)); // Remove using previous state
-		} else {
+		if (exist === -1) {
 			setFavorites((prevFavorites) => setFavorites([...prevFavorites, item]));
+		} else if (exist !== -1) {
+			setFavorites((prevFavorites) => prevFavorites.splice(exist, 1)); // Remove using previous state
+			console.log("masuk");
 		}
-		console.log(favorites.length);
+		console.log(exist);
 	};
 
 	return (
