@@ -5,21 +5,26 @@ const Favorites = () => {
 	const { favorites } = useContext(GlobalContext);
 	const [ingredientsFav, setIngredientsFav] = useState([]);
 
-	const fetchingFavoriteIng = async (getid) => {
-		console.log(getid);
-		try {
-			const response = await fetch(
-				`https://forkify-api.herokuapp.com/api/v2/recipes/${getid}`
-			);
-			const data = await response.json();
-			if (!data) return;
-			setIngredientsFav((prev) => setIngredientsFav([...prev, data]));
-			console.log(ingredientsFav);
-		} catch (error) {
-			console.log(error);
-		}
+	const fetchingFavoritesIng = () => {
+		const collection = [...ingredientsFav];
+		favorites.map(async (favorite) => {
+			try {
+				const ingredient = await fetch(
+					`https://forkify-api.herokuapp.com/api/v2/recipes/${favorite.id}`
+				).then((data) => data.json());
+				collection.push(ingredient);
+			} catch (error) {
+				console.log(error);
+			}
+		});
+		setIngredientsFav(collection);
 	};
 
+	useEffect(() => {
+		fetchingFavoritesIng();
+	}, [favorites.length]);
+
+	console.log(ingredientsFav);
 	return (
 		<div className="pt-[100px] flex flex-col items-center justify-center   bg-slate-200 min-h-screen">
 			<h1 className="text-4xl font-extralight">Favorite List :</h1>

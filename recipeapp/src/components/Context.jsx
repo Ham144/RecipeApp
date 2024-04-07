@@ -50,6 +50,7 @@ export default function GlobalState({ children }) {
 	}, []);
 
 	const searchData = (e) => {
+		navigate("/");
 		fetchingData();
 	};
 

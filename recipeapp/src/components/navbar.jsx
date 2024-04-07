@@ -8,8 +8,6 @@ export default function Navbar() {
 		useContext(GlobalContext);
 	const [showSidebar, setshowSidebar] = useState(false);
 
-	const handleShowSideBar = () => {};
-
 	return (
 		<nav className="navbar px-5 fixed z-20 w-screen backdrop-blur-sm  py-[20px] flex justify-between items-center border-b-2">
 			<div className="logo">
@@ -31,35 +29,35 @@ export default function Navbar() {
 				/>
 
 				<div
-					className={`sidebar ${
+					className={`sidebar md:hidden ${
 						showSidebar ? "translate-x-[200px]" : ""
-					}  absolute left-[-200px] w-[40%] top-[110px] h-screen bg-slate-400  rounded-md`}
+					}  absolute left-[-200px] w-[40%] top-[110px] h-screen bg-slate-400 transition-transform duration-300  rounded-md`}
 				>
 					test
 				</div>
 			</div>
-			<div className="flex gap-x-14   Navigation md:visible max-md:hidden xl:translate-x-[300px] duration-500">
+			<div className="flex gap-x-14   Navigation md:visible max-md:hidden xl:translate-x-[200px] xl:text-[3vh] text-md duration-500">
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 "
+					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white drop-shadow-lg font-bold"
 					to={"/"}
 				>
 					Home
 				</Link>
 
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 "
+					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white font-extrabold drop-shadow-lg"
 					to={"/details/0"}
 				>
 					Details
 				</Link>
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 "
+					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white font-bold drop-shadow-lg"
 					to={"/favorites"}
 				>
 					Favorites
 				</Link>
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 "
+					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white font-bold  drop-shadow-lg"
 					to={"/about"}
 				>
 					About
