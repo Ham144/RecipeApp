@@ -3,7 +3,7 @@ import { GlobalContext } from "../components/Context";
 import { FaHeart, FaStar } from "react-icons/fa";
 
 const Home = () => {
-	const { loading, foodMatch, navigate, setId, addToFavorite } =
+	const { loading, foodMatch, navigate, setId, addToFavorite, favorites } =
 		useContext(GlobalContext);
 
 	const handleDetail = (getindex) => {
@@ -26,16 +26,17 @@ const Home = () => {
 							} drop-shadow-lg rounded-md text-center `}
 							key={food.id}
 						>
-							<div className="absolute flex z-10 text-yellow-400 ">
-								{Array(Math.floor(Math.random() * 5) + 1)
-									.fill(null)
-									.map((_, index) => (
-										<FaStar
-											key={index}
-											className="drop-shadow-lg rotate-45"
-											size={22}
-										/>
-									))}
+							<div
+								className={`${
+									favorites.find((fav) => {
+										return fav.id === foodMatch.data.recipes[index].id;
+									})
+										? "bg-yellow-200 text-yellow-500"
+										: "bg-white"
+								} relative  h-full z-10 right-[15%] top-5 shadow-xl   text-yellow-400 border rounded-full p-2 px-2 `}
+								onClick={() => addToFavorite(foodMatch?.data?.recipes[index])}
+							>
+								<FaHeart className="xl:size-[50px] lg:size-[40px] size-[30px]" />
 							</div>
 
 							<div
@@ -63,7 +64,7 @@ const Home = () => {
 				)
 			) : (
 				<div className="absolute top-[50%] flex-1  mx-auto items-center justify-center justify-items-center  h-screen ">
-					Nothing to show :(
+					Nothing to show :( API LIMIT Reached
 				</div>
 			)}
 		</div>
