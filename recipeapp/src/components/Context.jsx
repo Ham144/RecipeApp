@@ -11,6 +11,7 @@ export default function GlobalState({ children }) {
 	const navigate = useNavigate();
 	const [ingredients, setIngredients] = useState();
 	const [favorites, setFavorites] = useState([]);
+	const [ingredientsFav, setIngredientsFav] = useState([]);
 
 	const fetchingData = async () => {
 		try {
@@ -43,6 +44,21 @@ export default function GlobalState({ children }) {
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const fetchingFavoritesIng = () => {
+		const collection = [...ingredientsFav];
+		favorites.map(async (favorite) => {
+			try {
+				const ingredient = await fetch(
+					`https://forkify-api.herokuapp.com/api/v2/recipes/${favorite.id}`
+				).then((data) => data.json());
+				collection.push(ingredient);
+			} catch (error) {
+				console.log(error);
+			}
+		});
+		setIngredientsFav(collection);
 	};
 
 	useEffect(() => {
@@ -89,6 +105,9 @@ export default function GlobalState({ children }) {
 				favorites,
 				setFavorites,
 				fetchingIngredients,
+				ingredientsFav,
+				setIngredientsFav,
+				fetchingFavoritesIng,
 			}}
 		>
 			{children}

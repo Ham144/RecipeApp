@@ -3,26 +3,11 @@ import { GlobalContext } from "../components/Context";
 import { Link } from "react-router-dom";
 
 const Favorites = () => {
-	const { favorites } = useContext(GlobalContext);
-	const [ingredientsFav, setIngredientsFav] = useState([]);
+	const { favorites, ingredientsFav, fetchingFavoritesIng } =
+		useContext(GlobalContext);
 	const [moreDetail, setMoreDetail] = useState(
 		Array(favorites.length).fill(false)
 	);
-
-	const fetchingFavoritesIng = () => {
-		const collection = [...ingredientsFav];
-		favorites.map(async (favorite) => {
-			try {
-				const ingredient = await fetch(
-					`https://forkify-api.herokuapp.com/api/v2/recipes/${favorite.id}`
-				).then((data) => data.json());
-				collection.push(ingredient);
-			} catch (error) {
-				console.log(error);
-			}
-		});
-		setIngredientsFav(collection);
-	};
 
 	useEffect(() => {
 		fetchingFavoritesIng();
