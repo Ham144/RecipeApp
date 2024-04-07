@@ -30,34 +30,61 @@ export default function Navbar() {
 
 				<div
 					className={`sidebar md:hidden ${
-						showSidebar ? "translate-x-[200px]" : ""
-					}  absolute left-[-200px] w-[40%] top-[110px] h-screen bg-slate-400 transition-transform duration-300  rounded-md`}
+						showSidebar ? "translate-x-[200px]" : "hidden"
+					}  absolute  left-[-200px] w-[40%] top-[95px] z-[-10] h-screen bg-slate-300 transition-opacity duration-300  rounded-md`}
+					onClick={() => setshowSidebar(!showSidebar)}
 				>
-					test
+					<div className="flex flex-col items-start px-3   gap-y-4 font-light">
+						<Link
+							className="border-b-2 w-full hover:font-bold hover:scale-105 drop-shadow-lg font-bold"
+							to={"/"}
+						>
+							Home
+						</Link>
+
+						<Link
+							className="border-b-2 w-full hover:font-bold hover:scale-105  font-bold drop-shadow-lg"
+							to={"/details/0"}
+						>
+							Details
+						</Link>
+						<Link
+							className="border-b-2 w-full hover:font-bold hover:scale-105  font-bold drop-shadow-lg"
+							to={"/favorites"}
+						>
+							Favorites
+						</Link>
+						<Link
+							className="border-b-2 w-full hover:font-bold hover:scale-105  font-bold  drop-shadow-lg"
+							to={"/about"}
+						>
+							About
+						</Link>
+					</div>
 				</div>
 			</div>
-			<div className="flex gap-x-14   Navigation md:visible max-md:hidden xl:translate-x-[200px] xl:text-[3vh] text-md duration-500">
+			<div className="flex gap-x-14   Navigation md:visible max-md:hidden xl:translate-x-[200px] xl:text-[3vh] text-md duration-500 text-black">
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white drop-shadow-lg font-bold"
+					className="hover:border-b-2 hover:font-bold hover:scale-105 drop-shadow-lg font-bold"
 					to={"/"}
 				>
 					Home
 				</Link>
 
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white font-extrabold drop-shadow-lg"
+					className="hover:border-b-2 hover:font-bold hover:scale-105  font-bold drop-shadow-lg"
 					to={"/details/0"}
 				>
 					Details
 				</Link>
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white font-bold drop-shadow-lg"
+					className="hover:border-b-2 hover:font-bold hover:scale-105  font-bold drop-shadow-lg"
 					to={"/favorites"}
 				>
 					Favorites
 				</Link>
 				<Link
-					className="hover:border-b-2 hover:font-bold hover:scale-105 text-white font-bold  drop-shadow-lg"
+					className="hover:border-b-2 hover:font-bold hover:scale-105  font-bold  drop-shadow-lg"
 					to={"/about"}
 				>
 					About

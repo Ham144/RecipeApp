@@ -16,7 +16,6 @@ export default function Details() {
 		foodMatch,
 		navigate,
 		ingredients,
-		setIngredients,
 		addToFavorite,
 		favorites,
 		fetchingIngredients,
