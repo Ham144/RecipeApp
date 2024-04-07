@@ -26,7 +26,11 @@ const Favorites = () => {
 
 	useEffect(() => {
 		fetchingFavoritesIng();
-	}, []);
+	}, [favorites.length]);
+
+	if (favorites.length === 0) {
+		fetchingFavoritesIng();
+	}
 
 	const handleMoreDetail = (getindex) => {
 		const collection = [...moreDetail];
