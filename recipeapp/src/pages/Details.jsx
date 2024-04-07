@@ -37,6 +37,7 @@ export default function Details() {
 			}
 		}
 		fetchingIngredients(getIndex);
+		console.log(ingredients);
 	};
 
 	useEffect(() => {
