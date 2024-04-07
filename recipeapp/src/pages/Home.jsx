@@ -28,23 +28,17 @@ const Home = () => {
 						>
 							<div
 								className={`${
-									favorites.find((fav) => {
+									favorites?.find((fav) => {
 										return fav.id === foodMatch.data.recipes[index].id;
 									})
 										? "bg-yellow-200 text-yellow-500"
 										: "bg-white"
-								} relative  h-full z-10 right-[15%] top-5 shadow-xl   text-yellow-400 border rounded-full p-2 px-2 `}
+								} absolute   z-10 right-2 top-2 shadow-xl   text-yellow-400 border rounded-full p-1 px-1 `}
 								onClick={() => addToFavorite(foodMatch?.data?.recipes[index])}
 							>
-								<FaHeart className="xl:size-[50px] lg:size-[40px] size-[30px]" />
+								<FaHeart className="xl:size-[30px] lg:size-[30px] size-[10px]" />
 							</div>
 
-							<div
-								className="absolute z-30 right-3 text-yellow-400 border rounded-full p-2 px-2 bg-white hover:bg-slate-300"
-								onClick={() => addToFavorite(food)}
-							>
-								<FaHeart size={30} />
-							</div>
 							<img
 								className="aspect-square object-cover hover:object-contain text-sm text-center transition-opacity rounded-lg drop-shadow-xl"
 								src={food.image_url}
@@ -64,7 +58,7 @@ const Home = () => {
 				)
 			) : (
 				<div className="absolute top-[50%] flex-1  mx-auto items-center justify-center justify-items-center  h-screen ">
-					Nothing to show :( API LIMIT Reached
+					Nothing to show :( API limit reached
 				</div>
 			)}
 		</div>
