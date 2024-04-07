@@ -58,7 +58,7 @@ const Home = () => {
 				)
 			) : (
 				<div className="absolute top-[50%] flex-1  mx-auto items-center justify-center justify-items-center  h-screen ">
-					Nothing to show :( API limit reached
+					Food is not found or :( API limit reached
 				</div>
 			)}
 		</div>

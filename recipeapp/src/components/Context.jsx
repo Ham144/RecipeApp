@@ -65,9 +65,10 @@ export default function GlobalState({ children }) {
 		fetchingData();
 	}, []);
 
-	const searchData = (e) => {
+	const searchData = async (e) => {
 		navigate("/");
 		fetchingData();
+		await e?.target?.blur();
 	};
 
 	const addToFavorite = (item) => {
