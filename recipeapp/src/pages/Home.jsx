@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../components/Context";
-import { FaHeart, FaStar } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const Home = () => {
 	const { loading, foodMatch, navigate, setId, addToFavorite, favorites } =

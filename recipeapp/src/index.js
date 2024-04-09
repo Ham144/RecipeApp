@@ -4,8 +4,7 @@ import './global.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalState from './components/Context';
-import Navbar from './components/Navbar';
-
+import Navbar from './components/navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
