@@ -8,7 +8,6 @@ const Favorites = () => {
 	const [moreDetail, setMoreDetail] = useState(
 		Array(favorites.length).fill(false)
 	);
-
 	if (!favorites) {
 		window.location.reload();
 	}

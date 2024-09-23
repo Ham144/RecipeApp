@@ -8,13 +8,11 @@ import Navbar from './components/navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <GlobalState>
-        <Navbar />
-        <App />
-      </GlobalState>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <GlobalState>
+      <Navbar />
+      <App />
+    </GlobalState>
+  </BrowserRouter>
 );
 
