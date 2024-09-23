@@ -9,6 +9,10 @@ const Favorites = () => {
 		Array(favorites.length).fill(false)
 	);
 
+	if (!favorites) {
+		window.location.reload();
+	}
+
 	useEffect(() => {
 		fetchingFavoritesIng();
 	}, [favorites.length]);
