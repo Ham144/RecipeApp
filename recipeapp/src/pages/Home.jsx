@@ -57,8 +57,14 @@ const Home = () => {
 					))
 				)
 			) : (
-				<div className="absolute top-[50%] flex-1  mx-auto items-center justify-center justify-items-center  h-screen ">
-					Food is not found or :( API limit reached
+				<div className="absolute min-h-screen flex flex-1  mx-auto items-center justify-center justify-items-center  w-full">
+					<div
+						className={`loading flex flex-1 mx-auto justify-center items-center`}
+					>
+						<div className="w-10 h-10 bg-red-500 rounded-full animate-bounce"></div>
+						<div className="w-10 h-10 bg-yellow-500 rounded-full animate-bounce"></div>
+						<div className="w-10 h-10 bg-green-500 rounded-full animate-bounce"></div>
+					</div>
 				</div>
 			)}
 		</div>

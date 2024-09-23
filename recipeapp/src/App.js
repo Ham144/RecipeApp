@@ -18,8 +18,6 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/details/:index' element={<Details />} />
         <Route path='/favorites' element={<Favorites />} />
-
-
       </Routes>
     </div>
   )

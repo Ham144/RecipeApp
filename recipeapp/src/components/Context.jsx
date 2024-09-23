@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
-	const [searchParam, setSearchParam] = useState("avocado");
+	const [searchParam, setSearchParam] = useState("banana");
 	const [loading, setLoading] = useState(false);
 	const [foodMatch, setFoodMatch] = useState([]);
 	const [id, setId] = useState("");
 	const navigate = useNavigate();
 	const [ingredients, setIngredients] = useState();
-	const [favorites, setFavorites] = useState([]);
+	const [favorites, setFavorites] = useState([
+		JSON.parse(localStorage.getItem("favorites")) || [],
+	]);
 	const [ingredientsFav, setIngredientsFav] = useState([]);
 
 	const fetchingData = async () => {
@@ -48,17 +50,20 @@ export default function GlobalState({ children }) {
 
 	const fetchingFavoritesIng = () => {
 		const collection = [...ingredientsFav];
-		favorites.map(async (favorite) => {
-			try {
-				const ingredient = await fetch(
-					`https://forkify-api.herokuapp.com/api/v2/recipes/${favorite.id}`
-				).then((data) => data.json());
-				collection.push(ingredient);
-			} catch (error) {
-				console.log(error);
-			}
-		});
-		setIngredientsFav(collection);
+		if (favorites.length) {
+			favorites?.map(async (favorite) => {
+				try {
+					const ingredient = await fetch(
+						`https://forkify-api.herokuapp.com/api/v2/recipes/${favorite.id}`
+					).then((data) => data.json());
+					collection.push(ingredient);
+				} catch (error) {
+					console.log(error);
+				}
+			});
+			setIngredientsFav(collection);
+		}
+		console.log("favorites is null");
 	};
 
 	useEffect(() => {
@@ -74,7 +79,6 @@ export default function GlobalState({ children }) {
 	const addToFavorite = (item) => {
 		const collection = [...favorites];
 		const exist = collection.findIndex((single) => {
-			// console.log(single.id, item.id);
 			return single.id === item.id;
 		});
 
@@ -86,8 +90,24 @@ export default function GlobalState({ children }) {
 			setFavorites(collection);
 			// console.log("terhapus");
 		}
-		console.log(favorites.length);
 	};
+
+	function makeIntoLocalStorage() {
+		localStorage.removeItem("favorites");
+		localStorage.setItem("favorites", JSON.stringify([...favorites]));
+	}
+
+	useEffect(() => {
+		if (favorites?.length) {
+			makeIntoLocalStorage();
+		}
+	}, [favorites]);
+
+	useEffect(() => {
+		if (localStorage.getItem("favorites")) {
+			setFavorites(JSON.parse(localStorage.getItem("favorites"))[0]);
+		}
+	}, []);
 
 	return (
 		<GlobalContext.Provider

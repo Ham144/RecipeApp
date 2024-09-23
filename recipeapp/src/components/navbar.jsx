@@ -20,12 +20,12 @@ export default function Navbar() {
 					height={60}
 				/>
 				<img
-					className="size-[40%] md:hidden border-x-black active:border-y-black active:border-x-0  border-4 rounded-full "
+					className="mr-3 z-10 md:hidden border-x-black active:border-y-black active:border-x-0  border-4 rounded-full w-10 flex "
 					src="https://cdn-icons-png.flaticon.com/128/2276/2276931.png"
 					alt="logo"
 					onClick={() => setshowSidebar(!showSidebar)}
-					width={60}
-					height={60}
+					width={90}
+					height={90}
 				/>
 
 				<div

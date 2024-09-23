@@ -18,7 +18,6 @@ const Favorites = () => {
 		collection[getindex] = !moreDetail[getindex];
 		setMoreDetail(collection);
 	};
-	console.log(ingredientsFav);
 	if (!ingredientsFav.length || !favorites.length) {
 		return (
 			<div className="w-screen min-h-screen flex flex-col justify-center items-center rounded-md bg-white shadow-lg px-5 py-3">
